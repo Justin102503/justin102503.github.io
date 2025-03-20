@@ -70,7 +70,7 @@ if (isNaN(numItems) || numItems < 1 || numItems > 99) {
 
         </ul>
 
-        <p>We appreciate your business!</p>
+        <p>Looking forward to shopping with you again!</p>
 
     `;
 
