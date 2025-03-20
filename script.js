@@ -62,7 +62,7 @@ document.getElementById("orderForm").addEventListener("submit", function(event) 
 
         </ul>
 
-        <p>We appreciate your business!</p>
+        <p>Looking forward to shopping with you again!</p>
 
     `;
 
