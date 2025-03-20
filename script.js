@@ -1,46 +1,36 @@
+document.getElementById("orderForm").addEventListener("submit", function(event) {
 
-alert("Welcome to my online store!");
-
-
-
-
-let name = prompt("Enter your name:");
-
-let itemRequested = prompt("What item would you like to order?");
-
-let numItems = parseInt(prompt("Enter the Number of Items between 1-99:"));
+    event.preventDefault(); 
 
 
 
 
-if (isNaN(numItems) || numItems < 1 || numItems > 99) {
+    let name = document.getElementById("name").value;
 
-    alert("Invalid amount, please enter a number between 1-99.");
+    let itemRequested = document.getElementById("itemRequested").value;
 
-} else {
-
-
-    let currTime = new Date();
-
-    let hours = currTime.getHours();
-
-    let greeting;
+    let numItems = parseInt(document.getElementById("numItems").value);
 
 
 
-    if (hours < 12) {
+    // Validate quantity
 
-        greeting = "Good Morning";
+    if (isNaN(numItems) || numItems < 1 || numItems > 99) {
 
-    } else if (hours < 18) {
+        alert("Invalid amount, please enter a number between 1-99.");
 
-        greeting = "Good Afternoon";
-
-    } else {
-
-        greeting = "Good Evening";
+        return;
 
     }
+
+
+
+
+    let currentTime = new Date();
+
+    let hours = currentTime.getHours();
+
+    let greeting = (hours < 12) ? "Good Morning" : (hours < 18) ? "Good Afternoon" : "Good Evening";
 
 
 
@@ -52,7 +42,9 @@ if (isNaN(numItems) || numItems < 1 || numItems > 99) {
     let formattedArrivalDate = arrivalDate.toDateString();
 
 
-    let orderDetails = `
+
+
+    document.getElementById("orderDetails").innerHTML = `
 
         <h2>${greeting}, ${name}!</h2>
 
@@ -70,12 +62,14 @@ if (isNaN(numItems) || numItems < 1 || numItems > 99) {
 
         </ul>
 
-        <p>Looking forward to shopping with you again!</p>
+        <p>We appreciate your business!</p>
 
     `;
 
 
 
-    document.getElementById("orderDetails").innerHTML = orderDetails;
 
-}
+    document.getElementById("orderForm").reset();
+
+});
+
