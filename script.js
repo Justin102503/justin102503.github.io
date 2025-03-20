@@ -13,7 +13,6 @@ document.getElementById("orderForm").addEventListener("submit", function(event) 
 
 
 
-    // Validate quantity
 
     if (isNaN(numItems) || numItems < 1 || numItems > 99) {
 
