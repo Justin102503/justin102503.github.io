@@ -67,7 +67,7 @@
 
     <div id="result" class="mt-4 hidden">
       <h4 id="statusMsg" class="text-center"></h4>
-      <ul class="list-group mt-3" id="userInfo"></ul>
+      <ul class="list-group mt-3" id="playerInfo"></ul>
     </div>
   </div>
 
@@ -75,7 +75,7 @@
     document.getElementById("registrationForm").addEventListener("submit", function (e) {
       e.preventDefault();
 
-      const user = {
+      const player = {
         firstName: document.getElementById("firstName").value.trim(),
         lastName: document.getElementById("lastName").value.trim(),
         email: document.getElementById("email").value.trim(),
@@ -83,13 +83,13 @@
         dob: document.getElementById("dob").value
       };
 
-      const passwordValid = user.password.includes("!") || user.password.includes("?");
-      const allFieldsFilled = Object.values(user).every(field => field);
+      const passwordValid = player.password.includes("!") || player.password.includes("?");
+      const allFieldsFilled = Object.values(player).every(field => field);
 
       const resultDiv = document.getElementById("result");
       const statusMsg = document.getElementById("statusMsg");
-      const userInfo = document.getElementById("userInfo");
-      userInfo.innerHTML = "";
+      const playerInfo = document.getElementById("playerInfo");
+      playerInfo.innerHTML = "";
 
       if (!allFieldsFilled) {
         statusMsg.textContent = "Registration Failed: All fields are required.";
@@ -98,19 +98,19 @@
         statusMsg.textContent = "Registration Failed: Password must include '!' or '?'.";
         statusMsg.className = "text-danger";
       } else {
-        const hiddenPassword = "*".repeat(user.password.length);
+        const hiddenPassword = "*".repeat(player.password.length);
         statusMsg.textContent = "🎉 Welcome to PixelArena!";
         statusMsg.className = "text-success";
 
-        const userDisplay = {
-          "First Name": user.firstName,
-          "Last Name": user.lastName,
-          "Email": user.email,
+        const playerDisplay = {
+          "First Name": player.firstName,
+          "Last Name": player.lastName,
+          "Email": player.email,
           "Password": hiddenPassword,
-          "Date of Birth": user.dob
+          "Date of Birth": player.dob
         };
 
-        for (const [key, value] of Object.entries(userDisplay)) {
+        for (const [key, value] of Object.entries(playerDisplay)) {
           const li = document.createElement("li");
           li.className = "list-group-item";
           li.textContent = `${key}: ${value}`;
