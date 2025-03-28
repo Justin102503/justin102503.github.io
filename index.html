@@ -44,12 +44,12 @@
     <h2 class="text-center mb-4">Join Thronebound</h2>
     <form id="registrationForm">
       <div class="mb-3">
-        <label for="firstName" class="form-label">First Name</label>
-        <input type="text" class="form-control" id="firstName" required />
+        <label for="fName" class="form-label">First Name</label>
+        <input type="text" class="form-control" id="fName" required />
       </div>
       <div class="mb-3">
-        <label for="lastName" class="form-label">Last Name</label>
-        <input type="text" class="form-control" id="lastName" required />
+        <label for="lName" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="lName" required />
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email Address</label>
@@ -77,8 +77,8 @@
       e.preventDefault();
 
       const player = {
-        firstName: document.getElementById("firstName").value.trim(),
-        lastName: document.getElementById("lastName").value.trim(),
+        fName: document.getElementById("fName").value.trim(),
+        lName: document.getElementById("lName").value.trim(),
         email: document.getElementById("email").value.trim(),
         password: document.getElementById("password").value,
         dob: document.getElementById("dob").value
@@ -104,8 +104,8 @@
         statusMsg.className = "text-success";
 
         const playerDisplay = {
-          "First Name": player.firstName,
-          "Last Name": player.lastName,
+          "First Name": player.fName,
+          "Last Name": player.lName,
           "Email": player.email,
           "Password": hiddenPassword,
           "Date of Birth": player.dob
