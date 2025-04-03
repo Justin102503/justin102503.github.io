@@ -10,6 +10,7 @@ document.getElementById("loadFactsBtn").addEventListener("click", function () {
           row.innerHTML = `<td>${fact.factId}</td><td>${fact.text}</td>`;
           tableBody.appendChild(row);
         });
+  
         if (data.catPhoto) {
           document.getElementById("catImage").src = data.catPhoto;
         }
