@@ -2,13 +2,13 @@ document.getElementById("catFactsButton").addEventListener("click", function () 
     fetch("https://brianobruno.github.io/cats.json")
       .then(response => response.json())
       .then(data => {
-        const sortedFacts = data.facts.sort((a, b) => a.factId - b.factId);
-        const tableBody = document.querySelector("#catFacts tbody");
-        tableBody.innerHTML = "";
-        sortedFacts.forEach(fact => {
+        const factSorter = data.facts.sort((a, b) => a.factId - b.factId);
+        const tableContents = document.querySelector("#catFacts tbody");
+        tableContents.innerHTML = "";
+        factSorter.forEach(fact => {
           const row = document.createElement("tr");
           row.innerHTML = `<td>${fact.factId}</td><td>${fact.text}</td>`;
-          tableBody.appendChild(row);
+          tableContents.appendChild(row);
         });
   
         if (data.catPhoto) {
@@ -16,7 +16,7 @@ document.getElementById("catFactsButton").addEventListener("click", function () 
         }
       })
       .catch(error => {
-        console.error("Error fetching cat facts:", error);
+        console.error("Error, cannot display cat facts:", error);
       });
   });
   
