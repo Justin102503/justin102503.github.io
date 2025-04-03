@@ -1,74 +1,53 @@
-document.getElementById("orderForm").addEventListener("submit", function(event) {
+<!DOCTYPE html>
 
-    event.preventDefault(); 
+<html lang="en">
 
+<head>
 
+    <meta charset="UTF-8">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    let name = document.getElementById("name").value;
+    <title>Ordering Website</title>
 
-    let itemRequested = document.getElementById("itemRequested").value;
+    <script defer src="script.js"></script>
 
-    let numItems = parseInt(document.getElementById("numItems").value);
+</head>
 
+<body>
 
+    <h1>Welcome to My Online Store</h1>
 
-    // Validate quantity
+    
 
-    if (isNaN(numItems) || numItems < 1 || numItems > 99) {
+    <form id="orderForm">
 
-        alert("Invalid amount, please enter a number between 1-99.");
+        <label for="name">Your Name:</label>
 
-        return;
+        <input type="text" id="name" required>
 
-    }
+        
 
+        <label for="itemRequested">Item:</label>
 
+        <input type="text" id="itemRequested" required>
 
+        
 
-    let currentTime = new Date();
+        <label for="numItems">Number of Items (1-99):</label>
 
-    let hours = currentTime.getHours();
+        <input type="number" id="numItems" min="1" max="99" required>
 
-    let greeting = (hours < 12) ? "Good Morning" : (hours < 18) ? "Good Afternoon" : "Good Evening";
+        
 
+        <button type="submit">Place Order</button>
 
-
-
-    let arrivalDate = new Date();
-
-    arrivalDate.setDate(arrivalDate.getDate() + 7);
-
-    let formattedArrivalDate = arrivalDate.toDateString();
-
-
-
-
-    document.getElementById("orderDetails").innerHTML = `
-
-        <h2>${greeting}, ${name}!</h2>
-
-        <p>Thank you for your order.</p>
-
-        <p><strong>Order Summary:</strong></p>
-
-        <ul>
-
-            <li><strong>Item:</strong> ${itemRequested}</li>
-
-            <li><strong>Quantity:</strong> ${numItems}</li>
-
-            <li><strong>Expected Arrival Date:</strong> ${formattedArrivalDate}</li>
-
-        </ul>
-
-        <p>Looking forward to shopping with you again!</p>
-
-    `;
+    </form>
 
 
 
+    <div id="orderDetails"></div>
 
-    document.getElementById("orderForm").reset();
+</body>
 
-});
+</html>
