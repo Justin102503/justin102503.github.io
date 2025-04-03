@@ -1,6 +1,7 @@
-document.getElementById("registrationForm").addEventListener("submit", function (e) {
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("registrationForm").addEventListener("submit", function (e) {
     e.preventDefault();
-  
+
     const player = {
       fName: document.getElementById("fName").value.trim(),
       lName: document.getElementById("lName").value.trim(),
@@ -8,15 +9,15 @@ document.getElementById("registrationForm").addEventListener("submit", function 
       password: document.getElementById("password").value,
       dob: document.getElementById("dob").value
     };
-  
+
     const passwordValid = player.password.includes("!") || player.password.includes("?");
     const allFieldsFilled = Object.values(player).every(field => field);
-  
+
     const resultDiv = document.getElementById("result");
     const statusMsg = document.getElementById("statusMsg");
     const playerInfo = document.getElementById("playerInfo");
     playerInfo.innerHTML = "";
-  
+
     if (!allFieldsFilled) {
       statusMsg.textContent = "Registration Failed: All fields are required.";
       statusMsg.className = "text-warning";
@@ -27,7 +28,7 @@ document.getElementById("registrationForm").addEventListener("submit", function 
       const hiddenPassword = "*".repeat(player.password.length);
       statusMsg.textContent = "Welcome to Thronebound, get ready to embark on your journey!";
       statusMsg.className = "text-success";
-  
+
       const playerDisplay = {
         "First Name": player.fName,
         "Last Name": player.lName,
@@ -35,7 +36,7 @@ document.getElementById("registrationForm").addEventListener("submit", function 
         "Password": hiddenPassword,
         "Date of Birth": player.dob
       };
-  
+
       for (const [key, value] of Object.entries(playerDisplay)) {
         const li = document.createElement("li");
         li.className = "list-group-item";
@@ -43,7 +44,7 @@ document.getElementById("registrationForm").addEventListener("submit", function 
         playerInfo.appendChild(li);
       }
     }
-  
+
     resultDiv.classList.remove("hidden");
   });
-  
+});
