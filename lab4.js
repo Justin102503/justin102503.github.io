@@ -12,9 +12,6 @@ document.getElementById("orderForm").addEventListener("submit", function(event) 
     let numItems = parseInt(document.getElementById("numItems").value);
 
 
-
-    // Validate quantity
-
     if (isNaN(numItems) || numItems < 1 || numItems > 99) {
 
         alert("Invalid amount, please enter a number between 1-99.");
