@@ -1,9 +1,9 @@
-document.getElementById("loadFactsBtn").addEventListener("click", function () {
+document.getElementById("catFactsButton").addEventListener("click", function () {
     fetch("https://brianobruno.github.io/cats.json")
       .then(response => response.json())
       .then(data => {
         const sortedFacts = data.facts.sort((a, b) => a.factId - b.factId);
-        const tableBody = document.querySelector("#factsTable tbody");
+        const tableBody = document.querySelector("#catFacts tbody");
         tableBody.innerHTML = "";
         sortedFacts.forEach(fact => {
           const row = document.createElement("tr");
