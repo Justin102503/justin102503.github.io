@@ -15,7 +15,7 @@
   <script>
     function populateMakes(data) {
       const list = document.getElementById("makes-list");
-      const makes = data.Results.slice(0, 100);
+      const makes = data.Results;
       for (let i = 0; i < makes.length; i++) {
         const make = makes[i];
         list.innerHTML += `<a href="models.html?make=${encodeURIComponent(make.Make_Name)}" class="list-group-item list-group-item-action">${make.Make_Name}</a>`;
