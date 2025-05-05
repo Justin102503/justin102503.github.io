@@ -9,20 +9,59 @@
 <body class="bg-light">
   <div class="container mt-4">
     <h1 class="mb-4">All Vehicle Makes</h1>
+
+    <div class="mb-3">
+      <strong>Filter by Letter:</strong>
+      <div class="d-flex flex-wrap gap-2">
+        <a href="FinalProject.html" class="btn btn-outline-secondary btn-sm">All</a>
+        <a href="?letter=A" class="btn btn-outline-secondary btn-sm">A</a>
+        <a href="?letter=B" class="btn btn-outline-secondary btn-sm">B</a>
+        <a href="?letter=C" class="btn btn-outline-secondary btn-sm">C</a>
+        <a href="?letter=D" class="btn btn-outline-secondary btn-sm">D</a>
+        <a href="?letter=E" class="btn btn-outline-secondary btn-sm">E</a>
+        <a href="?letter=F" class="btn btn-outline-secondary btn-sm">F</a>
+        <a href="?letter=G" class="btn btn-outline-secondary btn-sm">G</a>
+        <a href="?letter=H" class="btn btn-outline-secondary btn-sm">H</a>
+        <a href="?letter=I" class="btn btn-outline-secondary btn-sm">I</a>
+        <a href="?letter=J" class="btn btn-outline-secondary btn-sm">J</a>
+        <a href="?letter=K" class="btn btn-outline-secondary btn-sm">K</a>
+        <a href="?letter=L" class="btn btn-outline-secondary btn-sm">L</a>
+        <a href="?letter=M" class="btn btn-outline-secondary btn-sm">M</a>
+        <a href="?letter=N" class="btn btn-outline-secondary btn-sm">N</a>
+        <a href="?letter=O" class="btn btn-outline-secondary btn-sm">O</a>
+        <a href="?letter=P" class="btn btn-outline-secondary btn-sm">P</a>
+        <a href="?letter=Q" class="btn btn-outline-secondary btn-sm">Q</a>
+        <a href="?letter=R" class="btn btn-outline-secondary btn-sm">R</a>
+        <a href="?letter=S" class="btn btn-outline-secondary btn-sm">S</a>
+        <a href="?letter=T" class="btn btn-outline-secondary btn-sm">T</a>
+        <a href="?letter=U" class="btn btn-outline-secondary btn-sm">U</a>
+        <a href="?letter=V" class="btn btn-outline-secondary btn-sm">V</a>
+        <a href="?letter=W" class="btn btn-outline-secondary btn-sm">W</a>
+        <a href="?letter=X" class="btn btn-outline-secondary btn-sm">X</a>
+        <a href="?letter=Y" class="btn btn-outline-secondary btn-sm">Y</a>
+        <a href="?letter=Z" class="btn btn-outline-secondary btn-sm">Z</a>
+      </div>
+    </div>
+
     <div class="list-group" id="makes-list"></div>
   </div>
 
   <script>
     function populateMakes(data) {
       const list = document.getElementById("makes-list");
+      const params = new URLSearchParams(window.location.search);
+      const filterLetter = params.get('letter');
       const makes = data.Results;
+
       for (let i = 0; i < makes.length; i++) {
         const make = makes[i];
-        list.innerHTML += `<a href="models.html?make=${encodeURIComponent(make.Make_Name)}" class="list-group-item list-group-item-action">${make.Make_Name}</a>`;
+        if (!filterLetter || make.Make_Name.startsWith(filterLetter)) {
+          list.innerHTML += `<a href="models.html?make=${encodeURIComponent(make.Make_Name)}" class="list-group-item list-group-item-action">${make.Make_Name}</a>`;
+        }
       }
     }
 
-    fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetAllMakes?format=json")
+    fetch("https://vpic.nhtsa.dot.gov/api/vehicles/getallmakes?format=json")
       .then(res => res.json())
       .then(populateMakes);
   </script>
