@@ -57,24 +57,34 @@
       </div>
     </form>
 
+    <div id="no-results-message" class="text-danger fw-bold mb-3"></div>
     <div id="makes-list" class="list-group"></div>
   </div>
 
   <script>
     function populateMakes(data) {
       const list = document.getElementById("makes-list");
+      const message = document.getElementById("no-results-message");
       const params = new URLSearchParams(window.location.search);
       const searchQuery = (params.get('search') || '').toLowerCase();
       const makes = data.Results;
 
       list.innerHTML = '';
+      message.textContent = '';
+
+      let resultsFound = 0;
 
       for (let i = 0; i < makes.length; i++) {
         const makeName = makes[i].Make_Name;
         if (makeName.toLowerCase().includes(searchQuery)) {
           const link = `<a href="models.html?make=${encodeURIComponent(makeName)}" class="list-group-item list-group-item-action">${makeName}</a>`;
           list.insertAdjacentHTML('beforeend', link);
+          resultsFound++;
         }
+      }
+
+      if (resultsFound === 0 && searchQuery !== '') {
+        message.textContent = `No results found for "${params.get('search')}"`;
       }
     }
 
